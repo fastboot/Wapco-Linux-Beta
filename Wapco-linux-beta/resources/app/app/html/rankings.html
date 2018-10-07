@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rankings</title>
+<script type = "text/javascript" src = "../rankings.js">
+</script>
+<script>
+var prev;
+function myFunction2(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        if(prev != undefined) {
+          prev.className = prev.className.replace(" w3-show", "");
+        }
+        prev = x;
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+<link rel="stylesheet" href="../css/design.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .loader {
+      border: 10px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 10px solid green;
+      width: 70px;
+      height: 70px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    .row {
+    	margin-right: auto; 
+    	margin-left: 13%; 
+        float: left;
+        width: 65%;
+        padding: 0.5%;
+        overflow: auto;
+    }
+
+    .abc:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    img {
+    	height: 80px;
+    	width: 45%;
+    }
+
+    .xyz{
+    	height:10%;
+    }
+
+    .dropbtn {
+        background-color: transparent;
+        color: black;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: absolute;
+        display: inline-block;
+        min-width: 30%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 40%
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        width:600px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1; opacity:0;}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .container {
+      position: relative;
+      max-width: 100%;
+      height:100px;
+      margin: 0 auto;
+    }
+
+    .container img {vertical-align: middle;}
+
+    .container .content {
+      position: absolute;
+      background-color:transparent;
+      margin-top: 15%;
+      color: black;
+      padding: 20px;
+      width:90%;
+      float:left;
+      margin-left: 9%;
+    }
+
+  g {
+    border: solid blue;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  r {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .down1 {
+    width:4%;
+    height:1.8vh;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid green;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+</head>
+<body onload="myFunction(); createDiv();" style="margin:0;">
+        <br>
+        <div class="w3-container">
+            <div class="w3-bar w3-border w3-black">
+              <a href="home.html" style="width:20%" class="w3-bar-item w3-button w3-mobile">Home</a>
+              <a href="analysis.html" style="width:20%" class="w3-bar-item w3-button w3-mobile">Analysis</a>
+              <a href="comparator.html" style="width:20%" class="w3-bar-item w3-button w3-mobile">Compare</a>
+              <a href="rankings.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-gray">Rankings</a>
+              <a href="upcoming.html" style="width:20%" class="w3-bar-item w3-button w3-mobile">Upcoming</a>
+            </div>
+        </div>
+        <div class="w3-container w3-green w3-margin">
+      <h2>Rankings</h2>
+    </div>
+	<div class="w3-row w3-margin">
+        <a href="javascript:void(0)" class = "tabs" onclick="openTab(event, 'cntry');">
+          <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%;text-align: center;">Country</div>
+        </a>
+        <a href="javascript:void(0)" class = "tabs" onclick="openTab(event, 'cty');">
+          <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%;text-align: center;">City</div>
+        </a>
+        <a href="javascript:void(0)" class = "tabs" onclick="openTab(event, 'org');">
+          <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%;text-align: center;">Institution</div>
+        </a>
+        <a href="javascript:void(0)" class = "tabs" onclick="openTab(event, 'lang');">
+          <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%;text-align: center;">Language</div>
+        </a>
+    </div>
+
+<div id="cntry" class="w3-container city" style="display:none">
+    <script type="text/javascript"> 
+
+    	get_country();
+    </script>
+    <div class="abc" id = "rs">
+
+    </div>
+</div>
+
+<div id="cty" class="w3-container city" style="display:none">
+   
+    <script type="text/javascript"> 
+        get_city();
+    </script>
+    <div class="abc" id = "ct">
+
+    </div>
+</div>
+
+<div id="org" class="w3-container city" style="display:none">
+  
+    <script type="text/javascript"> 
+        get_org();
+    </script>
+    <div class="abc" id = "ogr">
+
+    </div>
+</div>
+
+<div id="lang" class="w3-container city" style="display:none">
+
+   
+    <script type="text/javascript"> 
+        get_lang();
+    </script>
+    <div class="abc" id = "lng">
+
+    </div>
+</div>
+
+<div id="loader"></div>
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
+  <h2></h2>
+</div>
+
+
+<script>
+document.getElementsByClassName('tabs')[0].click()
+function openTab(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-green", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-green";
+}
+</script>
+
+<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 30000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
+</body>
+
+<!--<script>
+  function createDiv() {
+    var div = document.createElement('div');
+    div.innerHTML = document.getElementById('getText').innerHTML;
+    document.body.appendChild(div);
+  }
+</script>-->
+</html>
