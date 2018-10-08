@@ -9,6 +9,7 @@
 Wapco is a simple web based desktop application for [Codeforces](https://codeforces.com/). 
 
 ## Features
+
 - Provides analysis for friends and other usernames according to ranks in recent contests (supports upto 50 recent contests).
 <img src="https://www.imageupload.co.uk/images/2018/10/08/analysis.png" border="0">
 
@@ -24,3 +25,19 @@ Wapco is a simple web based desktop application for [Codeforces](https://codefor
 <img src="https://www.imageupload.co.uk/images/2018/10/08/up.png" border="0">
 
 - Stupidly ***easy to use*** (:P)
+
+## Prerequisites
+
+- [Python 3](https://www.python.org/downloads/).
+- Check if Python 3 is successfully installed by
+```
+python3 --version
+```
+- Then run the following command in terminal to install some dependencies needed
+```
+pip3 install --upgrade google-api-python-client oauth2client datetime requests tzlocal
+```
+
+## Installing
+
+
