@@ -40,4 +40,29 @@ pip3 install --upgrade google-api-python-client oauth2client datetime requests t
 
 ## Installing
 
+It's simple 
+
+### Option 1:From source
+```
+git clone https://github.com/PranjalMishra11/Wapco-Linux-Beta.git
+```
+### Option 2:Download the repository and extract.
+
+## Built with
+- [Electron](https://electronjs.org/) : Electron is a framework for creating native applications with web technologies like JavaScript, HTML, and CSS.
+- [Python 3](https://www.python.org/) : Python is a programming language that lets you work quickly
+and integrate systems more effectively.
+- [Google Chart API](https://developers.google.com/chart/interactive/docs/quick_start) : Free , Rich Gallery , Customizable and Cross-browser compatible.
+- [Google Calendar API](https://developers.google.com/calendar/) : Flexible and Easy to use.
+
+## To-do
+- Add 'icon' to the current App.
+- Add more features.
+
+## Acknowledgments
+- Codeforces Visualizer was an inspiration behind the Compare page.
+
+
+
+
 
