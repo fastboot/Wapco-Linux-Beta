@@ -46,9 +46,15 @@
 	
 
 		<div id="create">
-		    <!--<button onClick="createDiv()">Click me!</button>-->
-		    <p><center><button class="w3-button w3-amber" onclick="show_up(); createDiv();this.disabled = true">Show 10 Upcoming Contests</button></center></p>
-		    <p><center><button class="w3-button w3-orange" onclick="upd_up(); createDiv();this.disabled = true">Update Google Calendar</button></center></p>
+		    <p><center><button id="Button1" class="w3-button w3-amber" onclick="show_up(); createDiv(); disable();">Show 10 Upcoming Contests</button></center></p>
+		    <p><center><button id="Button2" class="w3-button w3-orange" onclick="upd_up(); createDiv(); disable();">Update Google Calendar</button></center></p>
+		    <script>
+		    	function disable()
+		    	{
+		    		document.getElementById("Button1").disabled = true;
+		    		document.getElementById("Button2").disabled = true;
+		    	}
+		    </script>
 		 </div>
 		 
 		 <div id="getText" style="display: none;">
