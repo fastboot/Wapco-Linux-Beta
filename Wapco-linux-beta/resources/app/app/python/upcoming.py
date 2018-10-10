@@ -10,9 +10,6 @@ import json
 import pytz
 import sys
 
-choice = str(sys.argv[1])
-#choice = "blow"
-
 message = """<html>
 <head>
 <title>Upcoming</title>
@@ -32,31 +29,31 @@ message = """<html>
 
 """
 
-if choice == "show":
-	message += """<div class="w3-container w3-yellow w3-margin">
-		  <h2>Upcoming!</h2>
-		</div>
-		<br>
-		<div class="w3-container">
-		  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
-		    <p>"""
-	SCOPES='https://www.googleapis.com/auth/calendar.readonly'
-	store = file.Storage('storetwo.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-	    flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-	    creds = tools.run_flow(flow, store)
-	service = build('calendar', 'v3', http=creds.authorize(Http()))
-	now = dt.datetime.utcnow().isoformat() + 'Z'
-	events_result = service.events().list(calendarId='primary', timeMin=now,maxResults=365, singleEvents=True,orderBy='startTime').execute()
-	events = events_result.get('items', [])
+message += """<div class="w3-container w3-yellow w3-margin">
+	  <h2>Upcoming!</h2>
+	</div>
+	<br>
+	<div class="w3-container">
+	  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
+	    <p>"""
+SCOPES='https://www.googleapis.com/auth/calendar.readonly'
+store = file.Storage('storage.json')
+creds = store.get()
+if not creds or creds.invalid:
+    flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+    creds = tools.run_flow(flow, store)
+service = build('calendar', 'v3', http=creds.authorize(Http()))
+now = dt.datetime.utcnow().isoformat() + 'Z'
+events_result = service.events().list(calendarId='primary', timeMin=now,maxResults=365, singleEvents=True,orderBy='startTime').execute()
+events = events_result.get('items', [])
 
-	if not events:
-	    message += """No upcoming events found.</p>
-		  </div>
-		</div>
-	    """
-	for event in events:
+if not events:
+    message += """No upcoming events found.</p>
+	  </div>
+	</div>
+    """
+for event in events:
+	if event['location'] == "Codeforces":
 	    st = event['start']['dateTime']
 	    en =  event['end']['dateTime']
 
@@ -77,126 +74,13 @@ if choice == "show":
 	    th3 = nst3.split('-')[0]
 
 	    nst4 = en[en.index("T"):]
-	    nst4 = nst4[1:nst4.index("+")]
+	    nkst4 = nst4[1:nst4.index("+")]
 
 	    message += event['summary'] + """<br> Start: """ + fi+"/"+se+"/"+th + """ at """+nst2+"""<br> """+  """End: """ + fi3+"/"+se3+"/"+th3 + """ at """+nst4+"""<br> """ +""" </p>
 		  </div>
-		</div>
-		<div class="w3-container">
+		</div><div class="w3-container">
 		  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
-		    <p>
-		"""
-else:
-	message += """<div class="w3-container w3-yellow w3-margin">
-		  <h2>Update!</h2>
-		</div>
-		<br>
-		<div class="w3-container">
-		  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
-		    <p>"""
-	SCOPES='https://www.googleapis.com/auth/calendar.readonly'
-	store = file.Storage('storetwo.json')
-	creds = store.get()
-	if not creds or creds.invalid:
-	    flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-	    creds = tools.run_flow(flow, store)
-	service = build('calendar', 'v3', http=creds.authorize(Http()))
-	now = dt.datetime.utcnow().isoformat() + 'Z'
-	events_result = service.events().list(calendarId='primary', timeMin=now,maxResults=365, singleEvents=True,orderBy='startTime').execute()
-	events = events_result.get('items', [])
-
-	URL="https://codeforces.com/api/contest.list?gym=false&&locale=en";
-	req=requests.get(url=URL)
-	data=req.json()
-
-	for x in data['result']:
-		if x['phase']=="BEFORE":
-			h=0
-			for event in events:
-				if x['name']==event['summary']:
-					h=1
-			if h==0:
-				stname = x['name']
-				fl = 0
-				for i in stname:
-					if ord(i) < 0 or ord(i) > 128:
-						fl =1 
-				if fl == 0:
-					SCOPES = 'https://www.googleapis.com/auth/calendar'
-					store = file.Storage('storeone.json')
-					creds = store.get()
-					if not creds or creds.invalid:
-					    flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-					    creds = tools.run_flow(flow, store)
-
-					CAL = build('calendar', 'v3', http=creds.authorize(Http()))
-					posix_timestamp_1=x['startTimeSeconds']
-					unix_timestamp = float(posix_timestamp_1)
-					local_timezone = tzlocal.get_localzone() # get pytz timezone
-					local_time = datetime.fromtimestamp(unix_timestamp, local_timezone)
-					dt = datetime.fromtimestamp(posix_timestamp_1,local_timezone)
-					gog = local_time.strftime('%z')
-					gog = gog[:3]+":"+gog[3:]
-					en=dt.strftime('%Y-%m-%d'+"T"+'%H:%M:%S'+str(gog))
-
-
-					posix_timestamp_2=x['startTimeSeconds']+x['durationSeconds']
-					unix_timestamp2 = float(posix_timestamp_2)
-					local_timezone2 = tzlocal.get_localzone() # get pytz timezone
-					local_time2 = datetime.fromtimestamp(unix_timestamp2, local_timezone2)
-					dt2 = datetime.fromtimestamp(posix_timestamp_2,local_timezone2)
-					gog2 = local_time2.strftime('%z')
-					gog2 = gog2[:3]+":"+gog2[3:]
-					en2 = dt2.strftime('%Y-%m-%d'+"T"+'%H:%M:%S'+str(gog2))
-					
-					EVENT = {
-					  'summary': x['name'],
-					  'location': 'Codeforces',
-					  'start': {
-					    'dateTime': en
-					  },
-					  'end': {
-					    'dateTime': en2
-					  }
-					}
-
-					e=CAL.events().insert(calendarId='primary',sendNotifications='false',body=EVENT).execute()
-					st = e['start']['dateTime']
-					en = e['end']['dateTime']
-
-					nst = st[:st.index("T")]
-					fi = nst.split('-')[2]
-					se = nst.split('-')[1]
-					th = nst.split('-')[0]
-
-					nst2 = st[st.index("T"):]
-					nst2 = nst2[1:nst2.index("+")]
-
-					nst3 = en[:en.index("T")]
-					fi3 = nst3.split('-')[2]
-					se3 = nst3.split('-')[1]
-					th3 = nst3.split('-')[0]
-
-					nst4 = en[en.index("T"):]
-					nst4 = nst4[1:nst4.index("+")]
-					message +=  e['summary'] + """<br>***Contest added to calendar*** <br>Start: """ + fi+"/"+se+"/"+th + """ at """+nst2+"""<br> """+  """End: """ + fi3+"/"+se3+"/"+th3 + """ at """+nst4+"""<br> """ +"""
-					 </p>
-			  </div>
-			</div>
-			<div class="w3-container">
-			  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
-			    <p>"""
-			else:
-				message += """Contest already added! 
-				 </p>
-		  </div>
-		</div>
-		<div class="w3-container">
-		  <div class="w3-panel w3-pale-yellow w3-leftbar w3-rightbar w3-border-yellow">
-		    <p>"""
-
-
-
+		    <p> """
 message += """</p>
 		  </div>
 		</div><br>
