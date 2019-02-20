@@ -1,0 +1,34 @@
+{
+  "name": "electron-quick-start",
+  "productName": "WAPCO-Beta",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --electronVersion=1.6.3 --overwrite --platform=all --icon ./app/images/cf --arch=x64 --prune=true --out=release-builds"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^2.0.11",
+    "electron-packager": "^12.1.2"
+  },
+  "dependencies": {
+    "jQuery": "^1.7.4",
+    "jquery": "^3.3.1"
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
+  }
+}
