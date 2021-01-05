@@ -42,11 +42,11 @@ pip3 install --upgrade google-api-python-client oauth2client datetime requests t
 
 It's simple 
 
-### Option 1:From source
+### Option 1: From source
 ```
 git clone https://github.com/fastboot/Wapco-Linux-Beta.git
 ```
-### Option 2:Download the repository and extract.
+### Option 2: Download the repository and extract.
 
 ## Built with
 - [Electron](https://electronjs.org/) : Electron is a framework for creating native applications with web technologies like JavaScript, HTML, and CSS.
