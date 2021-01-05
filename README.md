@@ -44,7 +44,7 @@ It's simple
 
 ### Option 1:From source
 ```
-git clone https://github.com/PranjalMishra11/Wapco-Linux-Beta.git
+git clone https://github.com/fastboot/Wapco-Linux-Beta.git
 ```
 ### Option 2:Download the repository and extract.
 
