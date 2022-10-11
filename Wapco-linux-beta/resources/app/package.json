@@ -20,7 +20,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.4.0",
-    "electron-packager": "^12.1.2"
+    "electron-packager": "^16.0.0"
   },
   "dependencies": {
     "jQuery": "^1.7.4",
